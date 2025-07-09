@@ -90,12 +90,5 @@ Mediante esta actividad, se integran habilidades en análisis de secuencias, man
 
 Este proyecto fue desarrollado con fines académicos. Su uso está permitido con el debido reconocimiento.
 
-```
-
---- 
-
-Si necesitas que el `README.md` se guarde como archivo y lo subamos directamente a GitHub o por consola, dime y te ayudo con eso también.
-```
-
 
 
