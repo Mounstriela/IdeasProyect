@@ -6,7 +6,9 @@ Este proyecto consiste en la construcción de un árbol filogenético a partir d
 - *GAPDH* (enzima clave en la glicólisis, comúnmente usada como gen de referencia),  
 - *TLR4* (receptor tipo Toll, implicado en la respuesta inmune innata).  
 
-El propósito de este análisis es explorar la evolución molecular de estos genes entre especies, usando herramientas bioinformáticas para su alineamiento múltiple y posterior inferencia filogenética.
+Además, se añadió una secuencia de chimpancé para uno de los genes, con el fin de comparar su divergencia y analizar la relación evolutiva entre ambos primates.
+
+El propósito de este análisis es explorar la evolución molecular de estos genes en humanos y su comparación con otra especie cercana, usando herramientas bioinformáticas para su alineamiento múltiple y posterior inferencia filogenética.
 
 Este repositorio cumple con los objetivos del curso de proporcionar un pipeline que:
 - Reciba múltiples archivos en formato FASTA como entrada.
@@ -20,24 +22,23 @@ Todo el proyecto fue desarrollado para ejecutarse en el supercomputador **Hoffma
 ## Estructura del Repositorio
 
 ```
-
 FINALPROYECT/
 ├── Data/
 │   ├── ACTB.fasta
 │   ├── BRCA1.fasta
 │   ├── GAPDH.fasta
 │   ├── TLR4.fasta
-│   └── genes.fasta                  # Archivo combinado de todos los genes
+│   ├── BRCA1_Pan_troglodytes.fasta   # BRCA1 de chimpancé
+│   └── genes.fasta                   # Archivo combinado
 ├── Results/
-│   ├── genes\_aligned.fasta         # Alineamiento generado con MUSCLE
-│   ├── genes\_aligned.fasta.treefile # Árbol filogenético generado con IQ-TREE
-│   └── ...                         # Otros archivos auxiliares de IQ-TREE
+│   ├── genes_aligned.fasta           # Alineamiento generado con MUSCLE
+│   ├── genes_aligned.fasta.treefile # Árbol filogenético generado con IQ-TREE
+│   └── ...                           # Otros archivos auxiliares
 ├── Scripts/
-│   └── pipeline\_filogenia.sh       # Script ejecutable en Hoffman2
-├── muscle3.8.31\_i86linux64         # Binario de MUSCLE
-└── README.md                       # Este documento
-
-````
+│   └── pipeline_filogenia.sh         # Script principal
+├── muscle3.8.31_i86linux64           # Binario de MUSCLE
+└── README.md                         # Este documento
+```
 
 ---
 
@@ -57,7 +58,7 @@ Desde el directorio raíz `FINALPROYECT`, ejecutar:
 
 ```bash
 bash Scripts/pipeline_filogenia.sh
-````
+```
 
 El script realiza los siguientes pasos:
 
@@ -66,9 +67,32 @@ El script realiza los siguientes pasos:
 3. Corre IQ-TREE para inferir el árbol filogenético.
 4. Mueve los resultados generados a la carpeta `Results/`.
 
-Ejemplo de filogenia que se obtiene mediante el script:
+---
 
-![Captura de pantalla 2025-07-09 174703](https://github.com/user-attachments/assets/59907f67-452c-47a0-ab43-a4cc00a7fdf6)
+## Resultados
+
+El alineamiento múltiple evidencia regiones altamente conservadas entre las secuencias de los genes seleccionados. Esto es especialmente evidente en genes como *ACTB* y *GAPDH*, que tienen funciones celulares esenciales y por tanto están bajo fuerte presión evolutiva para mantener su estructura y función.
+
+En contraste, *TLR4*, que participa en la detección de patógenos por parte del sistema inmune, presenta regiones con mayor variabilidad. Esta diferencia refleja su necesidad de adaptarse a una diversidad de amenazas biológicas, lo que genera una evolución más rápida en ciertas regiones del gen.
+
+El árbol filogenético generado por IQ-TREE muestra cómo las secuencias humanas agrupan de manera esperada, y destaca la posición diferenciada del gen *BRCA1* del chimpancé. Este patrón filogenético refleja la cercanía evolutiva entre ambas especies, pero también permite observar la divergencia acumulada a lo largo del tiempo evolutivo en genes específicos.
+
+### Interpretación biológica del árbol:
+
+- **Ramas cortas** entre secuencias humanas sugieren alta similitud genética, lo cual es esperable ya que todas provienen de la misma especie.
+- **Una rama separada** para la secuencia de chimpancé indica una divergencia que, aunque pequeña, es medible y relevante para análisis evolutivos.
+- **Soportes de rama (bootstrap)** generados por IQ-TREE ayudan a validar la solidez de cada agrupación. Valores altos indican confianza en la relación representada.
+
+Este tipo de análisis puede ser útil para:
+- Inferir relaciones evolutivas entre especies.
+- Estudiar la conservación funcional de genes esenciales.
+- Identificar posibles regiones sujetas a selección positiva o negativa.
+
+Ejemplo del árbol generado:
+
+![genes_tree treefile](https://github.com/user-attachments/assets/5a9ab8f8-d65c-4db7-971b-850a6bb5b9f6)
+
+---
 
 ## Justificación Biológica
 
@@ -80,8 +104,8 @@ Mediante esta actividad, se integran habilidades en análisis de secuencias, man
 
 ## Autora
 
-* **Carolina Pumalema** – Estudiante responsable del desarrollo del proyecto
-* Curso de Bioinformática – Pontificia Universidad Católica del Ecuador
+* **Carolina Pumalema** – Estudiante responsable del desarrollo del proyecto  
+* Curso de Bioinformática – Pontificia Universidad Católica del Ecuador  
 * Profesor: **Daniel Chávez**
 
 ---
@@ -89,6 +113,3 @@ Mediante esta actividad, se integran habilidades en análisis de secuencias, man
 ## Licencia
 
 Este proyecto fue desarrollado con fines académicos. Su uso está permitido con el debido reconocimiento.
-
-
-
